@@ -1,13 +1,16 @@
 import socket
 import threading
 
+import protocol
 
 IP = "127.0.0.1"
 PORT = 5555
 CLIENTS_SOCKETS = []
 MD5_TARGET = 'f899139df5e1059396431415e770c6dd'
-NUM_PER_CORE = 1000
+NUM_PER_CORE = 5
+lock = threading.Lock()
 task_start = 0
+
 
 
 
@@ -16,9 +19,24 @@ def handle_client(client_socket, address):
     global task_start
     try:
         # receive num of cores
-        num_of_cores = (client_socket.recv(1024).decode())
-        print(num_of_cores)
-        client_socket.send(task_start)
+        cmd, data = protocol.protocol_receive(client_socket)
+        print(cmd)
+        print(data)
+
+        # send work frame
+        lock.acquire()
+        start = task_start
+        end = start + int(data[0]) * NUM_PER_CORE - 1
+        data = str(start) + "!" + str(end) + "!" + MD5_TARGET
+        client_socket.send(protocol.protocol_send("j", data))
+        print(protocol.protocol_send("j", data))
+        task_start = end + 1
+        lock.release()
+
+        # receive if found
+        cmd, data = protocol.protocol_receive(client_socket)
+        print(cmd)
+        print(data)
 
 
 
@@ -29,6 +47,7 @@ def handle_client(client_socket, address):
     finally:
         client_socket.close()
         print(f"[DISCONNECT] {address} has disconnected.")
+
 
 
 def main():
