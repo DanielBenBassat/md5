@@ -3,6 +3,12 @@ import hashlib
 import os
 
 import protocol
+import logging
+
+LOG_FORMAT = '%(levelname)s | %(asctime)s | %(message)s'
+LOG_LEVEL = logging.DEBUG
+LOG_DIR = 'log'
+LOG_FILE = LOG_DIR + '/client.log'
 
 IP = "127.0.0.1"
 PORT = 5555
@@ -21,22 +27,27 @@ def main():
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((IP, PORT))
     num_cores = os.cpu_count()
+    while True:
+        # Send num of cores to server
+        client_socket.send(protocol.protocol_send("r", num_cores))
+        print(protocol.protocol_send("r", num_cores))
 
-    # Send num of cores to server
-    client_socket.send(protocol.protocol_send("r", num_cores))
-    print(protocol.protocol_send("r", num_cores))
+        # receive work to do from server
+        cmd, data = protocol.protocol_receive(client_socket)
+        if cmd == 's':
+            break
+        print(cmd)
+        print(data)
 
-    # receive work to do from server
-    cmd, data = protocol.protocol_receive(client_socket)
-    print(cmd)
-    print(data)
+        target_num = calculate_md5(int(data[0]), int(data[1]), data[2])
+        print(target_num)
 
-    target_num = calculate_md5(int(data[0]), int(data[1]), data[2])
-    print(target_num)
+        # send if found to server
+        client_socket.send(protocol.protocol_send("f", target_num))
+        print(protocol.protocol_send("f", target_num))
 
-    # send if found to server
-    client_socket.send(protocol.protocol_send("f", target_num))
-    print(protocol.protocol_send("f", target_num))
+    print("i was told to be clodes")
+    client_socket.close()
 
 
 
