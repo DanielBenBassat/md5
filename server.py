@@ -22,14 +22,14 @@ found = False
 
 
 
-def handle_client(client_socket, address):
+def handle_client(client_socket, address, ):
     logging.debug(f"[NEW CONNECTION] {address} connected.")
     global task_start, found, CLIENTS_SOCKETS
     try:
         while not found:
             # receive num of cores
             cmd, data = protocol.protocol_receive(client_socket)
-            #logging.debug(protocol.protocol_receive(client_socket))
+            #print("cmd: " + cmd + " data: " + " ".join(data))
 
             # send work frame
             lock.acquire()
@@ -37,17 +37,17 @@ def handle_client(client_socket, address):
             end = start + int(data[0]) * NUM_PER_CORE - 1
             data = str(start) + "!" + str(end) + "!" + MD5_TARGET
             client_socket.send(protocol.protocol_send("j", data))
-            print(protocol.protocol_send("j", data))
+            #print(protocol.protocol_send("j", data))
             task_start = end + 1
             lock.release()
 
             # receive if found
             cmd, data = protocol.protocol_receive(client_socket)
-            print(cmd)
-            print(data)
+            #print("cmd: " + cmd + " data: " + " ".join(data))
+
             result = int(data[0])
-            print(result)
             if result != 0:
+                logging.debug("result is " + str(result))
                 found = True
                 for client_socket in CLIENTS_SOCKETS:
                     client_socket.sendall(protocol.protocol_send("s", ""))
@@ -55,9 +55,8 @@ def handle_client(client_socket, address):
     except socket.error:
         logging.debug(f"[ERROR] Connection with {address} lost.")
 
-    finally:
-        if result != 0:
-            logging.debug("result" + str(result))
+
+
 
 
 def main():
