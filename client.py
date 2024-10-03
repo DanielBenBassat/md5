@@ -1,7 +1,6 @@
 import socket
 import hashlib
 import os
-
 import protocol
 import logging
 
@@ -53,4 +52,7 @@ def main():
 
 
 if __name__ == "__main__":
+    if not os.path.isdir(LOG_DIR):
+        os.makedirs(LOG_DIR)
+    logging.basicConfig(format=LOG_FORMAT, filename=LOG_FILE, level=LOG_LEVEL)
     main()

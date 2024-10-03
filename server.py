@@ -1,9 +1,8 @@
 import socket
 import threading
-
 import protocol
-
 import logging
+import os
 
 LOG_FORMAT = '%(levelname)s | %(asctime)s | %(message)s'
 LOG_LEVEL = logging.DEBUG
@@ -23,16 +22,14 @@ found = False
 
 
 
-
 def handle_client(client_socket, address):
-    print(f"[NEW CONNECTION] {address} connected.")
+    logging.debug(f"[NEW CONNECTION] {address} connected.")
     global task_start, found, CLIENTS_SOCKETS
     try:
         while not found:
             # receive num of cores
             cmd, data = protocol.protocol_receive(client_socket)
-            print(cmd)
-            print(data)
+            #logging.debug(protocol.protocol_receive(client_socket))
 
             # send work frame
             lock.acquire()
@@ -55,31 +52,20 @@ def handle_client(client_socket, address):
                 for client_socket in CLIENTS_SOCKETS:
                     client_socket.sendall(protocol.protocol_send("s", ""))
 
-
-
-
-
-
-
-
-
     except socket.error:
-        print(f"[ERROR] Connection with {address} lost.")
+        logging.debug(f"[ERROR] Connection with {address} lost.")
 
     finally:
-        client_socket.close()
-        print(f"[DISCONNECT] {address} has disconnected.")
-
-
+        if result != 0:
+            logging.debug("result" + str(result))
 
 
 def main():
-
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((IP, PORT))
     server.listen()
-
-    print(f"[LISTENING] Server is listening on {IP}:{PORT}")
+    logging.debug("*********************************************")
+    logging.debug(f"[LISTENING] Server is listening on {IP}:{PORT}")
 
     while True:
         client_socket, client_address = server.accept()
@@ -87,8 +73,11 @@ def main():
         thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
         threads.append(thread)
         thread.start()
-        print(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
+        logging.debug(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
 
 
 if __name__ == "__main__":
+    if not os.path.isdir(LOG_DIR):
+        os.makedirs(LOG_DIR)
+    logging.basicConfig(format=LOG_FORMAT, filename=LOG_FILE, level=LOG_LEVEL)
     main()
