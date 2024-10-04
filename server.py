@@ -15,14 +15,14 @@ PORT = 5555
 CLIENTS_SOCKETS = []
 threads = []
 MD5_TARGET = "0a571f99e5667cb088dadcc9a2d1e161"
-NUM_PER_CORE = 10
+NUM_PER_CORE = 10000
 lock = threading.Lock()
 task_start = 0
 found = False
 
 
 
-def handle_client(client_socket, address, ):
+def handle_client(client_socket, address):
     logging.debug(f"[NEW CONNECTION] {address} connected.")
     global task_start, found, CLIENTS_SOCKETS
     try:
@@ -59,6 +59,9 @@ def handle_client(client_socket, address, ):
 
 
 
+
+
+
 def main():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((IP, PORT))
@@ -66,13 +69,18 @@ def main():
     logging.debug("*********************************************")
     logging.debug(f"[LISTENING] Server is listening on {IP}:{PORT}")
 
-    while True:
+    global found
+    while not found:
         client_socket, client_address = server.accept()
         CLIENTS_SOCKETS.append(client_socket)
         thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
         threads.append(thread)
         thread.start()
         logging.debug(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
+        print(found)
+    print("server finish")
+
+
 
 
 if __name__ == "__main__":

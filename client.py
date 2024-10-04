@@ -13,21 +13,25 @@ LOG_FILE = LOG_DIR + '/client.log'
 IP = "127.0.0.1"
 PORT = 5555
 
-stop_flag = False
+lock = threading.Lock()
+found = False
 
 
-def calculate_md5(start, end, md5_target, index):
-    global stop_flag, result_list
+def calculate_md5(start, end, md5_target, client_socket):
+    global found
     for i in range(start, end + 1):
-        if stop_flag:
+        if found:
             return
 
         num_str = str(i).zfill(3)
         md5_hash = hashlib.md5(num_str.encode()).hexdigest()
         if md5_hash == md5_target:
-            stop_flag = True
-            return i
-    return 0
+            with lock:
+                found = True
+            client_socket.send(protocol.protocol_send("f", i))
+            logging.debug("number is found: " + str(i))
+            print(protocol.protocol_send("f", i))
+
 
 
 def main():
@@ -38,11 +42,11 @@ def main():
         while True:
             # Send num of cores to server
             client_socket.send(protocol.protocol_send("r", num_cores))
-            #print(protocol.protocol_send("r", num_cores))
+            print(protocol.protocol_send("r", num_cores))
 
             # receive work to do from server
             cmd, data = protocol.protocol_receive(client_socket)
-            #print("cmd: " + cmd + " data: " + " ".join(data))
+            print("cmd: " + cmd + " data: " + " ".join(data))
             if cmd == 's':
                 logging.debug("stop working")
                 break
@@ -52,7 +56,6 @@ def main():
             target_md5 = data[2]
             step = (end - start) // num_cores
             threads = []
-            result_list = []
             for i in range(num_cores):
                 range_start = start + i * step
                 if i != num_cores - 1:
@@ -60,21 +63,17 @@ def main():
                 else:
                     range_end = end
 
-                t = threading.Thread(target=calculate_md5(), args=(range_start, range_end, target_md5, i))
+                t = threading.Thread(target=calculate_md5, args=(range_start, range_end, target_md5, client_socket))
                 threads.append(t)
                 t.start()
 
             for t in threads:
                 t.join()
 
-            #target_num = calculate_md5(int(data[0]), int(data[1]), data[2])
-            #print(target_num)
-            #if target_num != 0:
-              #  logging.debug("number is found: " + str(target_num))
 
-            # send if found to server
-            client_socket.send(protocol.protocol_send("f", target_num))
-            #print(protocol.protocol_send("f", target_num))
+            if not found:
+                client_socket.send(protocol.protocol_send("f", 0))
+                print(protocol.protocol_send("f", 0))
 
     except socket.error:
         logging.debug(f"[ERROR] Connection with lost.")
