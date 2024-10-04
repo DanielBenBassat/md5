@@ -70,15 +70,20 @@ def main():
     logging.debug(f"[LISTENING] Server is listening on {IP}:{PORT}")
 
     global found
+    server.settimeout(0.5)
+
     while not found:
-        client_socket, client_address = server.accept()
-        CLIENTS_SOCKETS.append(client_socket)
-        thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
-        threads.append(thread)
-        thread.start()
-        logging.debug(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
-        print(found)
-    print("server finish")
+        try:
+            client_socket, client_address = server.accept()
+            CLIENTS_SOCKETS.append(client_socket)
+            thread = threading.Thread(target=handle_client, args=(client_socket, client_address))
+            threads.append(thread)
+            thread.start()
+            logging.debug(f"[ACTIVE CONNECTIONS] {threading.active_count() - 1}")
+        except socket.timeout:
+            pass
+    server.close()
+    logging.debug("server is closed")
 
 
 

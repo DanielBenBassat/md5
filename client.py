@@ -35,11 +35,12 @@ def calculate_md5(start, end, md5_target, client_socket):
 
 
 def main():
+    global found
     try:
         client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client_socket.connect((IP, PORT))
         num_cores = os.cpu_count()
-        while True:
+        while not found:
             # Send num of cores to server
             client_socket.send(protocol.protocol_send("r", num_cores))
             print(protocol.protocol_send("r", num_cores))
@@ -62,14 +63,12 @@ def main():
                     range_end = start + (i + 1) * step
                 else:
                     range_end = end
-
                 t = threading.Thread(target=calculate_md5, args=(range_start, range_end, target_md5, client_socket))
                 threads.append(t)
                 t.start()
 
             for t in threads:
                 t.join()
-
 
             if not found:
                 client_socket.send(protocol.protocol_send("f", 0))
