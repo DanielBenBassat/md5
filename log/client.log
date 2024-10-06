@@ -105,3 +105,5 @@ DEBUG | 2024-10-06 16:58:22,120 | [ERROR] Connection with lost.
 DEBUG | 2024-10-06 16:58:22,120 | close connection
 DEBUG | 2024-10-06 16:59:36,451 | number is found: 123456789
 DEBUG | 2024-10-06 16:59:36,452 | close connection
+DEBUG | 2024-10-06 17:23:04,307 | number is found: 123456789
+DEBUG | 2024-10-06 17:23:04,310 | close connection
