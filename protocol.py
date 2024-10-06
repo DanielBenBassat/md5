@@ -18,8 +18,6 @@ def protocol_receive(my_socket):
         data += my_socket.recv(1).decode()
 
     data_list = data.split("!")
-
-
     return cmd, data_list
 
 

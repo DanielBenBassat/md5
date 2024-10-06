@@ -1,0 +1,107 @@
+DEBUG | 2024-10-03 14:55:11,727 | finish work, close connection
+DEBUG | 2024-10-03 14:57:49,880 | number is found: 12356789
+DEBUG | 2024-10-03 14:57:49,881 | finish work, close connection
+DEBUG | 2024-10-03 14:57:49,881 | finish work, close connection
+DEBUG | 2024-10-03 15:00:31,203 | number is found: 12356789
+DEBUG | 2024-10-03 15:00:31,204 | number was found
+DEBUG | 2024-10-03 15:00:31,204 | finish work, close connection
+DEBUG | 2024-10-03 15:00:31,204 | finish work, close connection
+DEBUG | 2024-10-03 15:03:05,679 | number is found: 12356789
+DEBUG | 2024-10-03 15:03:05,679 | stop working
+DEBUG | 2024-10-03 15:03:05,679 | close connection
+DEBUG | 2024-10-03 15:03:05,679 | finish work, close connection
+DEBUG | 2024-10-03 15:03:40,984 | number is found: 12356789
+DEBUG | 2024-10-03 15:03:40,990 | stop working
+DEBUG | 2024-10-03 15:03:40,991 | close connection
+DEBUG | 2024-10-03 15:05:47,125 | stop working
+DEBUG | 2024-10-03 15:05:47,125 | close connection
+DEBUG | 2024-10-04 16:42:36,268 | close connection
+DEBUG | 2024-10-04 16:44:36,234 | [ERROR] Connection with lost.
+DEBUG | 2024-10-04 16:44:36,236 | close connection
+DEBUG | 2024-10-04 16:44:36,236 | close connection
+DEBUG | 2024-10-04 16:46:50,157 | [ERROR] Connection with lost.
+DEBUG | 2024-10-04 16:46:50,157 | close connection
+DEBUG | 2024-10-04 16:48:58,795 | number is found: 12356789
+DEBUG | 2024-10-04 16:48:58,795 | stop working
+DEBUG | 2024-10-04 16:48:58,795 | close connection
+DEBUG | 2024-10-04 17:02:19,876 | number is found: 12356789
+DEBUG | 2024-10-04 17:02:19,877 | stop working
+DEBUG | 2024-10-04 17:02:19,877 | close connection
+DEBUG | 2024-10-04 17:04:46,692 | stop working
+DEBUG | 2024-10-04 17:04:46,692 | close connection
+DEBUG | 2024-10-04 17:07:05,505 | number is found: 12356789
+DEBUG | 2024-10-04 17:07:05,506 | stop working
+DEBUG | 2024-10-04 17:07:05,507 | close connection
+DEBUG | 2024-10-04 17:11:00,121 | number is found: 12356789
+DEBUG | 2024-10-04 17:11:00,123 | stop working
+DEBUG | 2024-10-04 17:11:00,123 | close connection
+DEBUG | 2024-10-04 17:11:14,172 | [ERROR] Connection with lost.
+DEBUG | 2024-10-04 17:11:14,172 | close connection
+DEBUG | 2024-10-04 17:12:08,339 | close connection
+DEBUG | 2024-10-04 19:03:41,219 | stop working
+DEBUG | 2024-10-04 19:03:41,219 | close connection
+DEBUG | 2024-10-04 19:11:21,263 | number is found: 12356789
+DEBUG | 2024-10-04 19:11:21,264 | stop working
+DEBUG | 2024-10-04 19:11:21,264 | close connection
+DEBUG | 2024-10-04 19:12:26,585 | stop working
+DEBUG | 2024-10-04 19:12:26,585 | close connection
+DEBUG | 2024-10-04 19:16:40,595 | stop working
+DEBUG | 2024-10-04 19:16:40,596 | close connection
+DEBUG | 2024-10-06 15:00:55,528 | number is found: 12356789
+DEBUG | 2024-10-06 15:00:55,528 | close connection
+DEBUG | 2024-10-06 15:07:44,987 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:07:44,987 | close connection
+DEBUG | 2024-10-06 15:09:33,148 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:09:33,148 | close connection
+DEBUG | 2024-10-06 15:24:38,785 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:24:38,785 | close connection
+DEBUG | 2024-10-06 15:24:38,808 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:24:38,808 | close connection
+DEBUG | 2024-10-06 15:24:38,829 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:24:38,830 | close connection
+DEBUG | 2024-10-06 15:24:38,921 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:24:38,921 | close connection
+DEBUG | 2024-10-06 15:24:38,972 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:24:38,972 | close connection
+DEBUG | 2024-10-06 15:24:39,001 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:24:39,002 | close connection
+DEBUG | 2024-10-06 15:24:39,059 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:24:39,060 | close connection
+DEBUG | 2024-10-06 15:24:39,093 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 15:24:39,093 | close connection
+DEBUG | 2024-10-06 16:46:25,435 | close connection
+DEBUG | 2024-10-06 16:46:43,719 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:46:43,727 | close connection
+DEBUG | 2024-10-06 16:47:05,526 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:47:05,530 | close connection
+DEBUG | 2024-10-06 16:48:02,868 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:48:02,871 | close connection
+DEBUG | 2024-10-06 16:48:05,747 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:48:05,751 | close connection
+DEBUG | 2024-10-06 16:48:08,875 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:48:08,878 | close connection
+DEBUG | 2024-10-06 16:48:18,253 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:48:18,256 | close connection
+DEBUG | 2024-10-06 16:48:34,055 | close connection
+DEBUG | 2024-10-06 16:48:39,168 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:48:39,171 | close connection
+DEBUG | 2024-10-06 16:49:12,452 | close connection
+DEBUG | 2024-10-06 16:49:27,866 | close connection
+DEBUG | 2024-10-06 16:50:04,721 | close connection
+DEBUG | 2024-10-06 16:50:59,694 | close connection
+DEBUG | 2024-10-06 16:54:24,891 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:54:24,895 | close connection
+DEBUG | 2024-10-06 16:54:24,992 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:54:24,992 | close connection
+DEBUG | 2024-10-06 16:54:39,734 | stop working
+DEBUG | 2024-10-06 16:54:39,734 | close connection
+DEBUG | 2024-10-06 16:57:12,433 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:57:12,434 | close connection
+DEBUG | 2024-10-06 16:57:32,624 | number is found: 12345678
+DEBUG | 2024-10-06 16:57:32,625 | close connection
+DEBUG | 2024-10-06 16:58:09,893 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:58:09,894 | close connection
+DEBUG | 2024-10-06 16:58:22,120 | [ERROR] Connection with lost.
+DEBUG | 2024-10-06 16:58:22,120 | close connection
+DEBUG | 2024-10-06 16:59:36,451 | number is found: 123456789
+DEBUG | 2024-10-06 16:59:36,452 | close connection
